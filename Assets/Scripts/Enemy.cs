@@ -53,7 +53,7 @@ public class Enemy : MonoBehaviour
                 {
                     _agent.SetDestination(playerPos);
                 }
-                if (_agent.remainingDistance <= _attackDistance)
+                if (distance <= _attackDistance)
                 {
                     //_enemyState = EnemyState.ATTACKING;
                 }
