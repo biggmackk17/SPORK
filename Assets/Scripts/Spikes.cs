@@ -15,23 +15,14 @@ public class Spikes : MonoBehaviour
     private void Update()
     {
         transform.localRotation *= Quaternion.Euler(_rotSpeed * Time.deltaTime);
-        
     }
 
     private IEnumerator OnTriggerStay(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.TryGetComponent<IDamageable>(out var target))
         {
-            var player = other.GetComponent<Player>();
-
-            if (player != null)
-            {
-                Debug.Log("Deal Spike Damage");
-                yield return new WaitForSeconds(_damageDelay);
-
-            }
+            target.TakeDamage(_damageAmount);
+            yield return new WaitForSeconds(_damageDelay);
         }
     }
-
-    
-}
+}    

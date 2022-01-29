@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Enemy : MonoBehaviour
+public class Enemy : MonoBehaviour, IDamageable
 {
     NavMeshAgent _agent;
     [SerializeField]float _attackDistance;
     Rigidbody _rb;
     private int _health;
+    Animator _animator;
+    private bool _alive;
 
     public enum EnemyType
     {
@@ -29,6 +31,7 @@ public class Enemy : MonoBehaviour
         _rb = transform.GetComponent<Rigidbody>();
         _agent = transform.GetComponent<NavMeshAgent>();
         _enemyState = EnemyState.CHASING;
+        _animator = GetComponent<Animator>();
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -41,7 +44,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    private void TakeDamage(int amount)
+    public void TakeDamage(int amount)
     {
         _health -= amount;
         if (_health <= amount)
