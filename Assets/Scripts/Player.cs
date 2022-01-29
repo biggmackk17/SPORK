@@ -12,8 +12,8 @@ public class Player : MonoBehaviour, IDamageable
 
     public Action<float> OnPlayerHealthChange;
 
-    private int _health = 100;
-    private int _totalHealth = 100;
+    private float _health = 100;
+    private float _totalHealth = 100;
 
     
     private void Awake()
@@ -21,20 +21,20 @@ public class Player : MonoBehaviour, IDamageable
         _instance = this;
     }
 
-    public void TakeDamage(int amount)
+    public void TakeDamage(float amount)
     {
         _health -= amount;
-        OnPlayerHealthChange?.Invoke((float)_health/_totalHealth);
+        OnPlayerHealthChange?.Invoke(_health);
         if(_health <= 0)
         {
             Die();
         }
     }
 
-    public void Heal(int amount)
+    public void Heal(float amount)
     {
         _health += amount;
-        OnPlayerHealthChange?.Invoke((float)_health/_totalHealth);
+        OnPlayerHealthChange?.Invoke(_health);
     }
 
     private void Die()

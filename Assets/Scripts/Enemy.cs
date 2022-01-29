@@ -8,7 +8,7 @@ public class Enemy : MonoBehaviour, IDamageable
     NavMeshAgent _agent;
     [SerializeField]float _attackDistance;
     Rigidbody _rb;
-    private int _health;
+    private float _health;
     Animator _animator;
     private bool _alive;
 
@@ -44,7 +44,7 @@ public class Enemy : MonoBehaviour, IDamageable
         }
     }
 
-    public void TakeDamage(int amount)
+    public void TakeDamage(float amount)
     {
         _health -= amount;
         if (_health <= amount)

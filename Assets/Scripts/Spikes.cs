@@ -17,12 +17,11 @@ public class Spikes : MonoBehaviour
         transform.localRotation *= Quaternion.Euler(_rotSpeed * Time.deltaTime);
     }
 
-    private IEnumerator OnTriggerStay(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         if (other.TryGetComponent<IDamageable>(out var target))
-        {
-            target.TakeDamage(_damageAmount);
-            yield return new WaitForSeconds(_damageDelay);
-        }
+
+            target.TakeDamage(_damageAmount * Time.deltaTime);
     }
-}    
+}
+    
