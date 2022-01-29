@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
     private bool _jumpHeld = false;
     [SerializeField]
     private LayerMask _groundLayer;
+    [SerializeField]private Animator _animator;
     private void Start()
     {
         _rb = GetComponent<Rigidbody>();
@@ -72,7 +73,7 @@ public class PlayerController : MonoBehaviour
             var targetRotation = Quaternion.LookRotation(direction.normalized, Vector3.up);
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 10.0f);
         }
-      
+        _animator.SetBool("grounded", _grounded);
     }
 
     private void OnDrawGizmos()

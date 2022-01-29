@@ -7,7 +7,9 @@ public class Enemy : MonoBehaviour
 {
     NavMeshAgent _agent;
     [SerializeField]float _attackDistance;
+    Rigidbody _rb;
     // Start is called before the first frame update
+
     public enum EnemyState { 
     CHASING,
     ATTACKING,
@@ -16,8 +18,27 @@ public class Enemy : MonoBehaviour
     [SerializeField] private EnemyState _enemyState;
     void Start()
     {
+        _rb = transform.GetComponent<Rigidbody>();
         _agent = transform.GetComponent<NavMeshAgent>();
         _enemyState = EnemyState.CHASING;
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.layer == 3)
+        {
+            _agent.enabled = false;
+            _rb.isKinematic = false;
+            StartCoroutine(CollisionDelay());
+        }
+    }
+
+    private IEnumerator CollisionDelay()
+    {
+        yield return new WaitForSeconds(1f);
+        _agent.enabled = true;
+        _rb.isKinematic = true;
+
     }
 
     // Update is called once per frame
@@ -28,11 +49,13 @@ public class Enemy : MonoBehaviour
         {
             case EnemyState.CHASING:
                 var distance = Vector3.Distance(playerPos, transform.position);
-                _agent.SetDestination(playerPos);
+                if (_agent.enabled)
+                {
+                    _agent.SetDestination(playerPos);
+                }
                 if (_agent.remainingDistance <= _attackDistance)
                 {
-                    Debug.Log(_agent.remainingDistance);
-                    _enemyState = EnemyState.ATTACKING;
+                    //_enemyState = EnemyState.ATTACKING;
                 }
                 break;
             case EnemyState.ATTACKING:
