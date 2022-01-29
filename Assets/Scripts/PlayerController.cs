@@ -18,10 +18,14 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        var xVel = Input.GetAxis("Horizontal") * _speed;
-        var zVel = Input.GetAxis("Vertical") * _speed;
+        var hor = Input.GetAxis("Horizontal");
+        var vert = Input.GetAxis("Vertical");
+        #region move
+        var xVel = hor * _speed;
+        var zVel = vert * _speed;
         _rb.velocity = new Vector3(xVel, _rb.velocity.y, zVel);
-
+        #endregion
+        #region Jump
         if (Input.GetKeyDown(KeyCode.Space))
         {
             if (_grounded)
@@ -29,9 +33,9 @@ public class PlayerController : MonoBehaviour
                 _rb.AddForce(Vector3.up*_jumpForce);
             }
         }
-
-        Debug.DrawLine(transform.position, transform.position + Vector3.down,Color.red);
-        if(Physics.Raycast(transform.position,Vector3.down, out var hit, .25f))
+        #endregion
+        #region GroundCheck
+        if (Physics.Raycast(transform.position, Vector3.down, out var hit, .25f))
         {
             Debug.Log(hit.transform.gameObject.name);
             _grounded = true;
@@ -40,5 +44,8 @@ public class PlayerController : MonoBehaviour
         {
             _grounded = false;
         }
+        #endregion
+
+       
     }
 }
