@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class PlayerController : MonoBehaviour
 {
@@ -17,6 +18,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private LayerMask _groundLayer;
     [SerializeField]private Animator _animator;
+
+    [SerializeField]
+    private CinemachineVirtualCamera _idleCam;
+    private int idlePriority = 11;
+
+
     private void Start()
     {
         _rb = GetComponent<Rigidbody>();
@@ -67,12 +74,22 @@ public class PlayerController : MonoBehaviour
 
         _rb.velocity = newVelocity;
 
+        if (_rb.velocity.magnitude > 0)
+        {
+            idlePriority = 8;
+        }
+        else
+        {
+            idlePriority = 11;
+        }
+
 
         if (direction.magnitude > 0)
         {
             var targetRotation = Quaternion.LookRotation(direction.normalized, Vector3.up);
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 10.0f);
         }
+        _idleCam.m_Priority = idlePriority;
         _animator.SetBool("grounded", _grounded);
     }
 
