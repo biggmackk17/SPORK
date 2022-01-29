@@ -7,14 +7,24 @@ public class Player : MonoBehaviour
     private static Player _instance;
     public static Player Instance => _instance;
 
+    private int _health;
+
     private void Awake()
     {
         _instance = this;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void TakeDamage(int damage)
     {
-        
+        _health -= damage;
+        if(_health <= 0)
+        {
+            Die();
+        }
+    }
+
+    private void Die()
+    {
+        //YOU DEAD
     }
 }
