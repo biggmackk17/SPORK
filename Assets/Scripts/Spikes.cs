@@ -9,6 +9,15 @@ public class Spikes : MonoBehaviour
     [SerializeField]
     private float _damageDelay = 3.0f;
 
+    [SerializeField]
+    private Vector3 _rotSpeed;
+
+    private void Update()
+    {
+        transform.localRotation *= Quaternion.Euler(_rotSpeed * Time.deltaTime);
+        
+    }
+
     private IEnumerator OnTriggerStay(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -22,7 +31,7 @@ public class Spikes : MonoBehaviour
 
             }
         }
-
-        
     }
+
+    
 }
