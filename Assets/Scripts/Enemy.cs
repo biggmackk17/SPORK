@@ -8,6 +8,14 @@ public class Enemy : MonoBehaviour
     NavMeshAgent _agent;
     [SerializeField]float _attackDistance;
     Rigidbody _rb;
+    private int _health;
+
+    public enum EnemyType
+    {
+        SPOONABLE,
+        FORKABLE
+    }
+    [SerializeField] EnemyType _enemyType;
     // Start is called before the first frame update
 
     public enum EnemyState { 
@@ -30,6 +38,15 @@ public class Enemy : MonoBehaviour
             _agent.enabled = false;
             _rb.isKinematic = false;
             StartCoroutine(CollisionDelay());
+        }
+    }
+
+    private void TakeDamage(int amount)
+    {
+        _health -= amount;
+        if (_health <= amount)
+        {
+            _enemyState = EnemyState.DYING;
         }
     }
 
@@ -62,6 +79,7 @@ public class Enemy : MonoBehaviour
                 //play attacking animation
                 break;
             case EnemyState.DYING:
+                //play die animation
                 break;
             default:
                 break;
