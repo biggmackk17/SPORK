@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BuzzSaw : MonoBehaviour
+public class Spikes : MonoBehaviour
 {
     [SerializeField]
     private int _damageAmount = 5;
