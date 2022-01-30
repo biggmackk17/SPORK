@@ -65,10 +65,30 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2181633153952274797, guid: dd99bd77e8d9eb046ada23a41032a2b6, type: 3}
       propertyPath: m_Name
-      value: IceCreamSpoonEnemy
+      value: Soup Spoon Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 2181633153952274797, guid: dd99bd77e8d9eb046ada23a41032a2b6, type: 3}
       propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2181633153952274798, guid: dd99bd77e8d9eb046ada23a41032a2b6, type: 3}
+      propertyPath: _speed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2181633153952274798, guid: dd99bd77e8d9eb046ada23a41032a2b6, type: 3}
+      propertyPath: myMesh
+      value: 
+      objectReference: {fileID: 5062704134612732847}
+    - target: {fileID: 2181633153952274798, guid: dd99bd77e8d9eb046ada23a41032a2b6, type: 3}
+      propertyPath: _angularSpeed
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 5662194727942137023, guid: dd99bd77e8d9eb046ada23a41032a2b6, type: 3}
+      propertyPath: m_Drag
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5662194727942137023, guid: dd99bd77e8d9eb046ada23a41032a2b6, type: 3}
+      propertyPath: m_AngularDrag
       value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -155,6 +175,11 @@ GameObject:
 --- !u!95 &2264160983559508531 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: 0bac956670e886b428aa7e87dada97f5, type: 3}
+  m_PrefabInstance: {fileID: 5620914284769685410}
+  m_PrefabAsset: {fileID: 0}
+--- !u!137 &5062704134612732847 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 595365018961437709, guid: 0bac956670e886b428aa7e87dada97f5, type: 3}
   m_PrefabInstance: {fileID: 5620914284769685410}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &178838163

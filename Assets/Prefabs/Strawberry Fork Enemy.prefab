@@ -57,6 +57,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 759984072b6a863439318d4fee845886, type: 3}
+--- !u!137 &2126807978169810811 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 2756704326524335591, guid: 759984072b6a863439318d4fee845886, type: 3}
+  m_PrefabInstance: {fileID: 4306065134088145564}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4306065134831367876
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -64,6 +69,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4246824393994844015, guid: 874b4cdde92a9bf46953772391048878, type: 3}
+      propertyPath: m_Drag
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4246824393994844015, guid: 874b4cdde92a9bf46953772391048878, type: 3}
+      propertyPath: m_Mass
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4246824393994844015, guid: 874b4cdde92a9bf46953772391048878, type: 3}
+      propertyPath: m_AngularDrag
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 7655380053678115512, guid: 874b4cdde92a9bf46953772391048878, type: 3}
       propertyPath: m_Center.y
       value: 1
@@ -118,7 +135,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7655380053678115517, guid: 874b4cdde92a9bf46953772391048878, type: 3}
       propertyPath: m_Name
-      value: Broccoli ForkEnemy
+      value: Strawberry Fork Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 7655380053678115517, guid: 874b4cdde92a9bf46953772391048878, type: 3}
       propertyPath: m_Layer
@@ -129,7 +146,15 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7655380053678115518, guid: 874b4cdde92a9bf46953772391048878, type: 3}
+      propertyPath: myMesh
+      value: 
+      objectReference: {fileID: 2126807978169810811}
+    - target: {fileID: 7655380053678115518, guid: 874b4cdde92a9bf46953772391048878, type: 3}
       propertyPath: _turnSpeed
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 7655380053678115518, guid: 874b4cdde92a9bf46953772391048878, type: 3}
+      propertyPath: _angularSpeed
       value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 7655380053678115519, guid: 874b4cdde92a9bf46953772391048878, type: 3}
