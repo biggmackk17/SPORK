@@ -14,8 +14,8 @@ public class Player : MonoBehaviour, IDamageable
 
     private float _health = 100;
     private float _totalHealth = 100;
+    private bool _invincible;
 
-    
     private void Awake()
     {
         _instance = this;
@@ -23,12 +23,38 @@ public class Player : MonoBehaviour, IDamageable
 
     public void TakeDamage(float amount)
     {
-        _health -= amount;
-        OnPlayerHealthChange?.Invoke(_health);
-        if(_health <= 0)
+        if (!_invincible)
         {
-            Die();
+            _health -= amount;
+            OnPlayerHealthChange?.Invoke(_health);
+            if (_health <= 0)
+            {
+                Die();
+            }
         }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.TryGetComponent<PickUps>(out var pickup))
+        {
+            if (pickup.Type == PickUps._powerUpType.Health)
+            {
+                Heal(pickup.HealAmount);
+            }
+            else if (pickup.Type == PickUps._powerUpType.SporkTime)
+            {
+                SetInvincible();
+            }
+            Destroy(pickup.gameObject);
+        }
+    }
+    private IEnumerator SetInvincible()
+    {
+        _invincible = true;
+        //play invinicble animation
+        yield return new WaitForSeconds(5f);
+        _invincible = false;
     }
 
     public void Heal(float amount)
