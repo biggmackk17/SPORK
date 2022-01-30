@@ -13,8 +13,13 @@ public class UIManager : MonoBehaviour
     
     void OnEnable()
     {
-        Player.Instance.OnPlayerHealthChange += UpdateHealthBar;
+        //Player.Instance.OnPlayerHealthChange += UpdateHealthBar;
         GameManager.Instance.OnGameOver += GameOverUI;
+    }
+
+    private void Update()
+    {
+        UpdateHealthBar(Player.Instance._health);
     }
 
     private void UpdateHealthBar(float amount)
@@ -47,9 +52,9 @@ public class UIManager : MonoBehaviour
         SceneManager.LoadScene(id);
     }
 
-    void OnDisable()
+/*    void OnDisable()
     {
         Player.Instance.OnPlayerHealthChange -= UpdateHealthBar;
         GameManager.Instance.OnGameOver -= GameOverUI;
-    }
+    }*/
 }

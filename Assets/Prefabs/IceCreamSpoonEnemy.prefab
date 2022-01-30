@@ -71,6 +71,34 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 2181633153952274798, guid: dd99bd77e8d9eb046ada23a41032a2b6, type: 3}
+      propertyPath: _speed
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2181633153952274798, guid: dd99bd77e8d9eb046ada23a41032a2b6, type: 3}
+      propertyPath: myMesh
+      value: 
+      objectReference: {fileID: 5062704134612732847}
+    - target: {fileID: 2181633153952274798, guid: dd99bd77e8d9eb046ada23a41032a2b6, type: 3}
+      propertyPath: _damage
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2181633153952274798, guid: dd99bd77e8d9eb046ada23a41032a2b6, type: 3}
+      propertyPath: _health
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 2181633153952274798, guid: dd99bd77e8d9eb046ada23a41032a2b6, type: 3}
+      propertyPath: _angularSpeed
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 2181633153952274799, guid: dd99bd77e8d9eb046ada23a41032a2b6, type: 3}
+      propertyPath: m_Speed
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2181633153952274799, guid: dd99bd77e8d9eb046ada23a41032a2b6, type: 3}
+      propertyPath: m_AngularSpeed
+      value: 200
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dd99bd77e8d9eb046ada23a41032a2b6, type: 3}
 --- !u!4 &6884686004901253240 stripped
@@ -155,6 +183,11 @@ GameObject:
 --- !u!95 &2264160983559508531 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: 0bac956670e886b428aa7e87dada97f5, type: 3}
+  m_PrefabInstance: {fileID: 5620914284769685410}
+  m_PrefabAsset: {fileID: 0}
+--- !u!137 &5062704134612732847 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 595365018961437709, guid: 0bac956670e886b428aa7e87dada97f5, type: 3}
   m_PrefabInstance: {fileID: 5620914284769685410}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &178838163

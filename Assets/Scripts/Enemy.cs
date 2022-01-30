@@ -19,6 +19,9 @@ public class Enemy : MonoBehaviour, IDamageable
     private bool _alive;
     [SerializeField] private bool invincible = false;
 
+    [SerializeField] private SkinnedMeshRenderer myMesh;
+    private Material myMat;
+
     public static Action OnEnemyDie;
 
     public enum EnemyType
@@ -49,6 +52,14 @@ public class Enemy : MonoBehaviour, IDamageable
         _animator = GetComponent<Animator>();
         _enemyState = EnemyState.CHASING;
         StartCoroutine(EnemyAI());
+        _agent.speed = _speed;
+        _agent.angularSpeed = _angularSpeed;
+        myMat = myMesh.material;
+    }
+
+    void Update()
+    {
+        myMat.color = Color.Lerp(myMat.color, Color.white, Time.deltaTime * 3);
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -66,23 +77,36 @@ public class Enemy : MonoBehaviour, IDamageable
         {
             if(_enemyType == EnemyType.FORKABLE)
             {
-                TakeDamage(10f);
+                TakeDamage(_damage);
             }
         }
     }
 
-    public void TakeDamage(float amount)
+    public void TakeDamage(float amount, Transform contactPoint = null) //pass in vector3 contactpoint
     {
         if (!invincible)
         {
             _health -= amount;
             StartCoroutine(DamageCooldown());
             Debug.Log(gameObject.name + " taking damage: " + amount + ":: remaining health: " + _health);
+
+            //Particles on contact point
+            myMat.color = Color.red;
+
             if (_health <= amount)
             {
                 _enemyState = EnemyState.DYING;
             }
         }
+    }
+
+    public void Knockback(Vector3 source) //Simple knockback that works with Broccoli @ Drag & Angular drag of 10
+    {
+        //Vert offset to lower pos
+        Vector3 yOffset = new Vector3(0f, 0f, 0f);
+        Vector3 vdiff = source - transform.position;
+        Debug.Log(Math.Atan2(source.y - transform.position.y, source.x - transform.position.x));
+        _rb.AddForceAtPosition(vdiff*5, transform.position, ForceMode.Impulse);
     }
 
     private IEnumerator CollisionDelay()
