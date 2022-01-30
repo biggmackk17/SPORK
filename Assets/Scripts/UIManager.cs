@@ -2,18 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+using System;
 
 public class UIManager : MonoBehaviour
 {
     [SerializeField] private Slider _healthbar;
     [SerializeField] private Image _healthbarFill;
-    private void Start()
+    [SerializeField] private GameObject gameOverUI;
+    
+    void OnEnable()
     {
         Player.Instance.OnPlayerHealthChange += UpdateHealthBar;
+        GameManager.Instance.OnGameOver += GameOverUI;
     }
 
     private void UpdateHealthBar(float amount)
     {
+        Debug.Log("UI Updating HealthBar");
         _healthbar.value = amount;
 
         if (amount > 65)
@@ -28,5 +34,22 @@ public class UIManager : MonoBehaviour
         {
             _healthbarFill.color = new Color(1, 0.2559966f, 0.1462264f, 1);
         }
+    }
+
+    private void GameOverUI()
+    {
+        gameOverUI.SetActive(true);
+    }
+
+    public void LoadScene(int id) //Better way to do this so that Menu can access this function too?
+    {
+        gameOverUI.SetActive(false);
+        SceneManager.LoadScene(id);
+    }
+
+    void OnDisable()
+    {
+        Player.Instance.OnPlayerHealthChange -= UpdateHealthBar;
+        GameManager.Instance.OnGameOver -= GameOverUI;
     }
 }

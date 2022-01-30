@@ -19,6 +19,8 @@ public class Player : MonoBehaviour, IDamageable
     [SerializeField] private AudioClip _healSound;
     [SerializeField] private AudioClip _invincibleSound;
 
+    private Rigidbody _rb;
+
     private void Awake()
     {
         _instance = this;
@@ -70,6 +72,15 @@ public class Player : MonoBehaviour, IDamageable
 
     private void Die()
     {
+        //Game over event?
+        GameManager.Instance.GameOver();
+        //More GameOver event logic. E.G. Noises, animations play, player falls down, enemies celebrate.
+
+        GetComponent<Collider>().enabled = false;
+        GetComponent<Rigidbody>().isKinematic = true;
+        transform.GetChild(0).gameObject.SetActive(false); //Temp circumvention of goody AudioListener console spam
+        //Enemies currently die as well
+
         //YOU DEAD
     }
 
