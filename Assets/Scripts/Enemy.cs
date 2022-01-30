@@ -9,7 +9,8 @@ public class Enemy : MonoBehaviour, IDamageable
     NavMeshAgent _agent;
     [SerializeField]float _attackDistance;
     Rigidbody _rb;
-    private float _health;
+    [SerializeField]private float _health;
+    [SerializeField] private float _damage;
     Animator _animator;
     private bool _alive;
     [SerializeField] private bool invincible = false;
@@ -89,12 +90,15 @@ public class Enemy : MonoBehaviour, IDamageable
     {
         while (_enemyState != EnemyState.DYING)
         {
-            var playerPos = Player.Instance.transform.position;
-                var distance = Vector3.Distance(playerPos, transform.position);
             while (_enemyState == EnemyState.CHASING)
             {
+            var playerPos = Player.Instance.transform.position;
+                var distance = Vector3.Distance(playerPos, transform.position);
                 if (_agent.enabled)
+                {
                     _agent.SetDestination(playerPos);
+                }
+
                 if (distance <= _attackDistance)
                 {
                     _enemyState = EnemyState.ATTACKING;
@@ -104,9 +108,12 @@ public class Enemy : MonoBehaviour, IDamageable
 
             while (_enemyState == EnemyState.ATTACKING)
             {
+                var playerPos = Player.Instance.transform.position;
+                var distance = Vector3.Distance(playerPos, transform.position);
                 _animator.SetBool("Attacking", true);
                 if(distance > _attackDistance)
                 {
+                    _animator.SetBool("Attacking", false);
                     _enemyState = EnemyState.CHASING;
                 }
                     yield return null;
@@ -121,5 +128,19 @@ public class Enemy : MonoBehaviour, IDamageable
         //set anim to dead
         OnEnemyDie?.Invoke();
         Destroy(this.gameObject);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("TriggerEntered");
+        if (other.gameObject.layer == 3)
+            Debug.Log("Layer 3");
+        {
+            if(other.TryGetComponent<IDamageable>(out var target))
+            {
+                Debug.Log("player take damage!!!");
+                target.TakeDamage(_damage);
+            }
+        }
     }
 }
