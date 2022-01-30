@@ -2,16 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using System;
 
 public class Enemy : MonoBehaviour, IDamageable
 {
     NavMeshAgent _agent;
     [SerializeField]float _attackDistance;
     Rigidbody _rb;
-    private float _health;
+    [SerializeField]private float _health;
+    [SerializeField] private float _damage;
     Animator _animator;
     private bool _alive;
     [SerializeField] private bool invincible = false;
+    public static Action OnEnemyDie;
 
     public enum EnemyType
     {
@@ -33,6 +36,7 @@ public class Enemy : MonoBehaviour, IDamageable
         _agent = transform.GetComponent<NavMeshAgent>();
         _enemyState = EnemyState.CHASING;
         _animator = GetComponent<Animator>();
+        StartCoroutine(EnemyAI());
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -82,30 +86,61 @@ public class Enemy : MonoBehaviour, IDamageable
     }
 
     // Update is called once per frame
-    void Update()
+     IEnumerator EnemyAI()
     {
-        var playerPos = Player.Instance.transform.position;
-        switch (_enemyState)
+        while (_enemyState != EnemyState.DYING)
         {
-            case EnemyState.CHASING:
+            while (_enemyState == EnemyState.CHASING)
+            {
+            var playerPos = Player.Instance.transform.position;
                 var distance = Vector3.Distance(playerPos, transform.position);
                 if (_agent.enabled)
                 {
                     _agent.SetDestination(playerPos);
                 }
+
                 if (distance <= _attackDistance)
                 {
                     _enemyState = EnemyState.ATTACKING;
                 }
-                break;
-            case EnemyState.ATTACKING:
-                //play attacking animation
-                break;
-            case EnemyState.DYING:
-                //play die animation
-                break;
-            default:
-                break;
+                yield return null;
+            }
+
+            while (_enemyState == EnemyState.ATTACKING)
+            {
+                var playerPos = Player.Instance.transform.position;
+                var distance = Vector3.Distance(playerPos, transform.position);
+                _animator.SetBool("Attacking", true);
+                if(distance > _attackDistance)
+                {
+                    _animator.SetBool("Attacking", false);
+                    _enemyState = EnemyState.CHASING;
+                }
+                    yield return null;
+            }
+            yield return null;
+            }
+        Die();
+    }
+
+    private void Die()
+    {
+        //set anim to dead
+        OnEnemyDie?.Invoke();
+        Destroy(this.gameObject);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("TriggerEntered");
+        if (other.gameObject.layer == 3)
+            Debug.Log("Layer 3");
+        {
+            if(other.TryGetComponent<IDamageable>(out var target))
+            {
+                Debug.Log("player take damage!!!");
+                target.TakeDamage(_damage);
+            }
         }
     }
 }
