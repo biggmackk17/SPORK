@@ -40,7 +40,7 @@ public class Spikes : MonoBehaviour
     private IEnumerator SawDamageAudio()
     {
         _sawDamageAudioCooldown = true;
-        _audioSource.PlayOneShot(_sliceSound); //Play slice locally since enemies hitting saw should be quieter if player is far away
+        _audioSource.PlayOneShot(_sliceSound, 0.5f); //Play slice locally since enemies hitting saw should be quieter if player is far away
         yield return new WaitForSeconds(_sliceSound.length);
         _sawDamageAudioCooldown = false;
     }

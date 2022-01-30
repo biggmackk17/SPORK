@@ -35,6 +35,13 @@ public class Enemy : MonoBehaviour, IDamageable
     DYING
     }
     [SerializeField] private EnemyState _enemyState;
+
+    
+    void OnEnable()
+    {
+        GameManager.Instance.OnGameOver += Die; //Placeholder logic, enemy can do any number of things upon game over
+    }
+
     void Start()
     {
         _rb = transform.GetComponent<Rigidbody>();
@@ -152,5 +159,10 @@ public class Enemy : MonoBehaviour, IDamageable
                 target.TakeDamage(_damage);
             }
         }
+    }
+
+    void OnDisable()
+    {
+        GameManager.Instance.OnGameOver -= Die;
     }
 }

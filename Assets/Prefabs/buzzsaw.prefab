@@ -44,11 +44,11 @@ PrefabInstance:
       objectReference: {fileID: 8300000, guid: a1af525d69dd5e345affbed80341a00d, type: 3}
     - target: {fileID: 1287982017, guid: 5b903e1bd571cdb40b792b8d309d311b, type: 3}
       propertyPath: m_Volume
-      value: 0.5
+      value: 0.35
       objectReference: {fileID: 0}
     - target: {fileID: 1287982017, guid: 5b903e1bd571cdb40b792b8d309d311b, type: 3}
       propertyPath: MaxDistance
-      value: 10
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 1287982017, guid: 5b903e1bd571cdb40b792b8d309d311b, type: 3}
       propertyPath: MinDistance
