@@ -16,9 +16,10 @@ public class LevelManager : MonoBehaviour
     }
 
     [SerializeField]
-    private List<GameObject> _waves;
+    private List<Wave> _waves;
 
-    private int _currentWave = 0;
+    static private int _currentWave = 0;
+    [SerializeField]private int _enemiesLeft;
 
     private void Awake()
     {
@@ -28,13 +29,16 @@ public class LevelManager : MonoBehaviour
     private void Start()
     {
         StartWave(_currentWave);
+        Enemy.OnEnemyDie += DecrementEnemiesLeft;
     }
 
     private void StartWave(int id)
     {
-        _waves.ForEach(x => x.SetActive(false));
-
-        _waves[id].SetActive(true);
+        //TELL UI TO DISPLAY WAVE TEXT
+        _waves.ForEach(x => x.gameObject.SetActive(false));
+        _waves[id].gameObject.SetActive(true);
+        _enemiesLeft = _waves[id].EnemyCount;
+        Player.Instance.transform.position = Vector3.zero;
     }
 
     public void WaveComplete()
@@ -42,4 +46,15 @@ public class LevelManager : MonoBehaviour
         _currentWave++;
         StartWave(_currentWave);
     }
+
+   public void DecrementEnemiesLeft()
+    {
+        _enemiesLeft--;
+        if (_enemiesLeft <= 0)
+        {
+            WaveComplete();
+        }
+    }
+
+
 }
