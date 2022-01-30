@@ -7,13 +7,18 @@ using System;
 public class Enemy : MonoBehaviour, IDamageable
 {
     NavMeshAgent _agent;
-    [SerializeField]float _attackDistance;
     Rigidbody _rb;
-    [SerializeField]private float _health;
-    [SerializeField] private float _damage;
     Animator _animator;
+
+    [SerializeField] private float _attackDistance;
+    [SerializeField] private float _health;
+    [SerializeField] private float _damage;
+    [SerializeField] private float _speed;
+    [SerializeField] private float _angularSpeed;
+    
     private bool _alive;
     [SerializeField] private bool invincible = false;
+
     public static Action OnEnemyDie;
 
     public enum EnemyType
@@ -34,8 +39,8 @@ public class Enemy : MonoBehaviour, IDamageable
     {
         _rb = transform.GetComponent<Rigidbody>();
         _agent = transform.GetComponent<NavMeshAgent>();
-        _enemyState = EnemyState.CHASING;
         _animator = GetComponent<Animator>();
+        _enemyState = EnemyState.CHASING;
         StartCoroutine(EnemyAI());
     }
 
@@ -43,7 +48,10 @@ public class Enemy : MonoBehaviour, IDamageable
     {
         if(collision.gameObject.layer == 3)
         {
-            _agent.enabled = false;
+            //_agent.enabled = false;
+            _agent.speed = 0;
+            _agent.angularSpeed = 0;
+            //Turn down angular speed too?
             _rb.isKinematic = false;
             StartCoroutine(CollisionDelay());
         }
@@ -73,7 +81,9 @@ public class Enemy : MonoBehaviour, IDamageable
     private IEnumerator CollisionDelay()
     {
         yield return new WaitForSeconds(1f);
-        _agent.enabled = true;
+        //_agent.enabled = true;
+        _agent.speed = _speed;
+        _agent.angularSpeed = _angularSpeed;
         _rb.isKinematic = true;
 
     }
@@ -93,7 +103,7 @@ public class Enemy : MonoBehaviour, IDamageable
             while (_enemyState == EnemyState.CHASING)
             {
             var playerPos = Player.Instance.transform.position;
-                var distance = Vector3.Distance(playerPos, transform.position);
+            var distance = Vector3.Distance(playerPos, transform.position);
                 if (_agent.enabled)
                 {
                     _agent.SetDestination(playerPos);

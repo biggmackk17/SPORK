@@ -56,14 +56,14 @@ public class Player : MonoBehaviour, IDamageable
     {
         _invincible = true;
         //play invinicble animation
-        AudioManager.Instance.PlayAudioClip(_invincibleSound);
+        AudioManager.Instance.PlayAudioClip(_invincibleSound, 0.5f);
         yield return new WaitForSeconds(5f);
         _invincible = false;
     }
 
     public void Heal(float amount)
     {
-        AudioManager.Instance.PlayAudioClip(_healSound);
+        AudioManager.Instance.PlayAudioClip(_healSound, 0.5f);
         _health += amount;
         OnPlayerHealthChange?.Invoke(_health);
     }

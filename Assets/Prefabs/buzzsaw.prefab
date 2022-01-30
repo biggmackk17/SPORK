@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 723519320542933582}
   m_Layer: 0
-  m_Name: BuzzSaw
+  m_Name: buzzsaw
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -42,6 +42,10 @@ PrefabInstance:
       propertyPath: _sliceSound
       value: 
       objectReference: {fileID: 8300000, guid: a1af525d69dd5e345affbed80341a00d, type: 3}
+    - target: {fileID: 1287982017, guid: 5b903e1bd571cdb40b792b8d309d311b, type: 3}
+      propertyPath: m_Volume
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 1287982017, guid: 5b903e1bd571cdb40b792b8d309d311b, type: 3}
       propertyPath: MaxDistance
       value: 10
