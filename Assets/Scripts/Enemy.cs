@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using System;
 
 public class Enemy : MonoBehaviour, IDamageable
 {
@@ -12,6 +13,7 @@ public class Enemy : MonoBehaviour, IDamageable
     Animator _animator;
     private bool _alive;
     [SerializeField] private bool invincible = false;
+    public static Action OnEnemyDie;
 
     public enum EnemyType
     {
@@ -33,6 +35,7 @@ public class Enemy : MonoBehaviour, IDamageable
         _agent = transform.GetComponent<NavMeshAgent>();
         _enemyState = EnemyState.CHASING;
         _animator = GetComponent<Animator>();
+        StartCoroutine(EnemyAI());
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -82,30 +85,41 @@ public class Enemy : MonoBehaviour, IDamageable
     }
 
     // Update is called once per frame
-    void Update()
+     IEnumerator EnemyAI()
     {
-        var playerPos = Player.Instance.transform.position;
-        switch (_enemyState)
+        while (_enemyState != EnemyState.DYING)
         {
-            case EnemyState.CHASING:
+            var playerPos = Player.Instance.transform.position;
                 var distance = Vector3.Distance(playerPos, transform.position);
+            while (_enemyState == EnemyState.CHASING)
+            {
                 if (_agent.enabled)
-                {
                     _agent.SetDestination(playerPos);
-                }
                 if (distance <= _attackDistance)
                 {
                     _enemyState = EnemyState.ATTACKING;
                 }
-                break;
-            case EnemyState.ATTACKING:
-                //play attacking animation
-                break;
-            case EnemyState.DYING:
-                //play die animation
-                break;
-            default:
-                break;
-        }
+                yield return null;
+            }
+
+            while (_enemyState == EnemyState.ATTACKING)
+            {
+                _animator.SetBool("Attacking", true);
+                if(distance > _attackDistance)
+                {
+                    _enemyState = EnemyState.CHASING;
+                }
+                    yield return null;
+            }
+            yield return null;
+            }
+        Die();
+    }
+
+    private void Die()
+    {
+        //set anim to dead
+        OnEnemyDie?.Invoke();
+        Destroy(this.gameObject);
     }
 }
