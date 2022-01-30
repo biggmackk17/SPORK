@@ -12,12 +12,14 @@ public class Player : MonoBehaviour, IDamageable
 
 	public Action<float> OnPlayerHealthChange;
 
-	private float _health = 100;
+	public float _health = 100;
 	private float _totalHealth = 100;
 	private bool _invincible;
 
 	[SerializeField] private AudioClip _healSound;
 	[SerializeField] private AudioClip _invincibleSound;
+	[SerializeField] private SkinnedMeshRenderer _myMesh;
+	private Material _myMat;
 
 	public Animator animator;
 
@@ -28,18 +30,31 @@ public class Player : MonoBehaviour, IDamageable
 		_instance = this;
 	}
 
-	public void TakeDamage(float amount)
+	void Start()
+	{
+		_myMat = _myMesh.material;
+		_health = _totalHealth;
+	}
+
+	public void TakeDamage(float amount, Transform contactPoint = null)
 	{
 		if (!_invincible)
 		{
 			_health -= amount;
 			animator.SetTrigger("hit");
+			_myMat.color = Color.red;
 			OnPlayerHealthChange?.Invoke(_health);
 			if (_health <= 0)
 			{
+				_health = 0;
 				Die();
 			}
 		}
+	}
+
+	void Update()
+	{
+		_myMat.color = Color.Lerp(_myMat.color, Color.white, Time.deltaTime * 3);
 	}
 
 	private void OnTriggerEnter(Collider other)
@@ -81,7 +96,7 @@ public class Player : MonoBehaviour, IDamageable
 
 		GetComponent<Collider>().enabled = false;
 		GetComponent<Rigidbody>().isKinematic = true;
-		transform.GetChild(0).gameObject.SetActive(false); //Temp circumvention of goody AudioListener console spam
+		transform.GetChild(0).gameObject.SetActive(false); //Temp circumvention of goofy AudioListener console spam
 														   //Enemies currently die as well
 
 		//YOU DEAD
@@ -99,11 +114,14 @@ public class Player : MonoBehaviour, IDamageable
 			{
 				Debug.Log("FORK ON FORK ACTION");
 				enemy.TakeDamage(utensil.GetUtensilDamage());
+				enemy.Knockback(myCollider.transform.position);
+				
 			}
 			if (utensil.GetUtensilType() == Utensil.UtensilType.SPOON && eType == Enemy.EnemyType.SPOONABLE)
 			{
 				Debug.Log("SPOON ON SPOON ACTION");
 				enemy.TakeDamage(utensil.GetUtensilDamage());
+				enemy.Knockback(myCollider.transform.position);
 			}
 		}
 	}
