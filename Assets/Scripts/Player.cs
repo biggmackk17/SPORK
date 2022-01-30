@@ -16,11 +16,14 @@ public class Player : MonoBehaviour, IDamageable
     private float _totalHealth = 100;
     private bool _invincible;
 
+    [SerializeField] private AudioClip _healSound;
+    [SerializeField] private AudioClip _invincibleSound;
+
     private void Awake()
     {
         _instance = this;
     }
-    //Dan
+    
     public void TakeDamage(float amount)
     {
         if (!_invincible)
@@ -44,7 +47,7 @@ public class Player : MonoBehaviour, IDamageable
             }
             else if (pickup.Type == PickUps._powerUpType.SporkTime)
             {
-                SetInvincible();
+                StartCoroutine(SetInvincible());
             }
             Destroy(pickup.gameObject);
         }
@@ -53,12 +56,14 @@ public class Player : MonoBehaviour, IDamageable
     {
         _invincible = true;
         //play invinicble animation
+        AudioManager.Instance.PlayAudioClip(_invincibleSound);
         yield return new WaitForSeconds(5f);
         _invincible = false;
     }
 
     public void Heal(float amount)
     {
+        AudioManager.Instance.PlayAudioClip(_healSound);
         _health += amount;
         OnPlayerHealthChange?.Invoke(_health);
     }
