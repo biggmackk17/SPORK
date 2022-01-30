@@ -24,7 +24,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 411461389}
-  m_LocalRotation: {x: 0.17574205, y: 0, z: -0, w: 0.9844363}
+  m_LocalRotation: {x: 0.17574205, y: -0, z: -0, w: 0.9844363}
   m_LocalPosition: {x: 0, y: 3.48, z: -5.64}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -396,7 +396,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1597816383}
-  m_LocalRotation: {x: 0.15423332, y: -0.000000019007132, z: 0.000000002967036, w: 0.9880345}
+  m_LocalRotation: {x: 0.15423334, y: 0.000000019007132, z: -0.000000002967036, w: 0.9880345}
   m_LocalPosition: {x: 0, y: 3, z: -5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -616,6 +616,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _healSound: {fileID: 8300000, guid: 66c7ca7c02286ce44a9fe40d6391479d, type: 3}
   _invincibleSound: {fileID: 8300000, guid: ce49ef66e55c3c642b397fd8f9d16f4e, type: 3}
+  animator: {fileID: 4836979829268838526}
 --- !u!81 &1178435921
 AudioListener:
   m_ObjectHideFlags: 0
