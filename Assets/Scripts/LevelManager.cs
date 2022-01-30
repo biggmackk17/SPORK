@@ -34,7 +34,7 @@ public class LevelManager : MonoBehaviour
 
     private void StartWave(int id)
     {
-        //TELL UI TO DISPLAY WAVE TEXT
+        StartCoroutine(UIManager.Instance.DisplayWaveText(id));
         _waves.ForEach(x => x.gameObject.SetActive(false));
         _waves[id].gameObject.SetActive(true);
         _enemiesLeft = _waves[id].EnemyCount;
