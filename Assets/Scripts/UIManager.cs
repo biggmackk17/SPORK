@@ -10,11 +10,42 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Slider _healthbar;
     [SerializeField] private Image _healthbarFill;
     [SerializeField] private GameObject gameOverUI;
-    
+    [SerializeField] private Text _waveText;
+
+    private static UIManager _instance;
+    public static UIManager Instance
+    {
+        get
+        {
+            return _instance;
+        }
+    }
+
+    private void Awake()
+    {
+        _instance = this;
+    }
+
     void OnEnable()
     {
         //Player.Instance.OnPlayerHealthChange += UpdateHealthBar;
         GameManager.Instance.OnGameOver += GameOverUI;
+    }
+
+
+    public IEnumerator DisplayWaveText(int wave)
+    {
+        if (wave == 3)
+        {
+            _waveText.text = "Final Wave";
+        }
+        else
+        {
+            _waveText.text = $"Wave {wave + 1}";
+        }
+        _waveText.gameObject.SetActive(true);
+        yield return new WaitForSeconds(2f);
+        _waveText.gameObject.SetActive(false);
     }
 
     private void Update()
