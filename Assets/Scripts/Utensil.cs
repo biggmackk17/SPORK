@@ -13,32 +13,13 @@ public class Utensil : MonoBehaviour
     [SerializeField] private float damage = 10f;
     [SerializeField] private UtensilType utensilType;
 
-    // Start is called before the first frame update
-    void Start()
+    public UtensilType GetUtensilType()
     {
-        //Get collider component
+        return utensilType;
     }
 
-    // Update is called once per frame
-    void Update()
+    public float GetUtensilDamage()
     {
-
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        Debug.Log("Collided");
-        if (other.gameObject.layer == 6) //If enemy layer
-        {
-            //If my UType == their EnemyType
-            
-            var enemy = other.gameObject.GetComponent<Enemy>();
-            var eType = enemy._enemyType;
-
-            if (utensilType == UtensilType.SPOON && eType == Enemy.EnemyType.SPOONABLE)
-                enemy.TakeDamage(damage);
-            else if (utensilType == UtensilType.FORK && eType == Enemy.EnemyType.FORKABLE)
-                enemy.TakeDamage(damage);
-        }
+        return damage;
     }
 }

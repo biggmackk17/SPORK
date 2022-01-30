@@ -67,4 +67,25 @@ public class Player : MonoBehaviour, IDamageable
     {
         //YOU DEAD
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        Collider myCollider = collision.contacts[0].thisCollider;
+        Enemy.EnemyType eType;
+
+        if (myCollider.gameObject.TryGetComponent<Utensil>(out var utensil) && collision.gameObject.TryGetComponent<Enemy>(out var enemy))
+        {
+            eType = enemy._enemyType;
+            if (utensil.GetUtensilType() == Utensil.UtensilType.FORK && eType == Enemy.EnemyType.FORKABLE)
+            {
+                Debug.Log("FORK ON FORK ACTION");
+                enemy.TakeDamage(utensil.GetUtensilDamage());
+            }
+            if (utensil.GetUtensilType() == Utensil.UtensilType.SPOON && eType == Enemy.EnemyType.SPOONABLE)
+            {
+                Debug.Log("SPOON ON SPOON ACTION");
+                enemy.TakeDamage(utensil.GetUtensilDamage());
+            }
+        }
+    }
 }

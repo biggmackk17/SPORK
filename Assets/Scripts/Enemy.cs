@@ -11,7 +11,7 @@ public class Enemy : MonoBehaviour, IDamageable
     private float _health;
     Animator _animator;
     private bool _alive;
-    private bool invincible = true;
+    [SerializeField] private bool invincible = false;
 
     public enum EnemyType
     {
@@ -57,7 +57,7 @@ public class Enemy : MonoBehaviour, IDamageable
         if (!invincible)
         {
             _health -= amount;
-            DamageCooldown();
+            StartCoroutine(DamageCooldown());
             Debug.Log(gameObject.name + " taking damage: " + amount + ":: remaining health: " + _health);
             if (_health <= amount)
             {
