@@ -1,0 +1,129 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &4306065134088145564
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 5908556640382696575}
+    m_Modifications:
+    - target: {fileID: 3778718916603501067, guid: 759984072b6a863439318d4fee845886, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3778718916603501067, guid: 759984072b6a863439318d4fee845886, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3778718916603501067, guid: 759984072b6a863439318d4fee845886, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3778718916603501067, guid: 759984072b6a863439318d4fee845886, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3778718916603501067, guid: 759984072b6a863439318d4fee845886, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.93096024
+      objectReference: {fileID: 0}
+    - target: {fileID: 3778718916603501067, guid: 759984072b6a863439318d4fee845886, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3778718916603501067, guid: 759984072b6a863439318d4fee845886, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.36512074
+      objectReference: {fileID: 0}
+    - target: {fileID: 3778718916603501067, guid: 759984072b6a863439318d4fee845886, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3778718916603501067, guid: 759984072b6a863439318d4fee845886, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3778718916603501067, guid: 759984072b6a863439318d4fee845886, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -317.17
+      objectReference: {fileID: 0}
+    - target: {fileID: 3778718916603501067, guid: 759984072b6a863439318d4fee845886, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4556345919146229937, guid: 759984072b6a863439318d4fee845886, type: 3}
+      propertyPath: m_Name
+      value: broccoli animated
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 759984072b6a863439318d4fee845886, type: 3}
+--- !u!1001 &4306065134831367876
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7655380053678115512, guid: 874b4cdde92a9bf46953772391048878, type: 3}
+      propertyPath: m_Center.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7655380053678115513, guid: 874b4cdde92a9bf46953772391048878, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7655380053678115515, guid: 874b4cdde92a9bf46953772391048878, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7655380053678115515, guid: 874b4cdde92a9bf46953772391048878, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -2.81
+      objectReference: {fileID: 0}
+    - target: {fileID: 7655380053678115515, guid: 874b4cdde92a9bf46953772391048878, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.19
+      objectReference: {fileID: 0}
+    - target: {fileID: 7655380053678115515, guid: 874b4cdde92a9bf46953772391048878, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -4.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7655380053678115515, guid: 874b4cdde92a9bf46953772391048878, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7655380053678115515, guid: 874b4cdde92a9bf46953772391048878, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7655380053678115515, guid: 874b4cdde92a9bf46953772391048878, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7655380053678115515, guid: 874b4cdde92a9bf46953772391048878, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7655380053678115515, guid: 874b4cdde92a9bf46953772391048878, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7655380053678115515, guid: 874b4cdde92a9bf46953772391048878, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7655380053678115515, guid: 874b4cdde92a9bf46953772391048878, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7655380053678115517, guid: 874b4cdde92a9bf46953772391048878, type: 3}
+      propertyPath: m_Name
+      value: Broccoli ForkEnemy
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 874b4cdde92a9bf46953772391048878, type: 3}
+--- !u!4 &5908556640382696575 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7655380053678115515, guid: 874b4cdde92a9bf46953772391048878, type: 3}
+  m_PrefabInstance: {fileID: 4306065134831367876}
+  m_PrefabAsset: {fileID: 0}
