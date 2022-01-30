@@ -24,7 +24,6 @@ public class UIManager : MonoBehaviour
 
     private void UpdateHealthBar(float amount)
     {
-        Debug.Log("UI Updating HealthBar");
         _healthbar.value = amount;
 
         if (amount > 65)

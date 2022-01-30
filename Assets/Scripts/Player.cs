@@ -113,15 +113,12 @@ public class Player : MonoBehaviour, IDamageable
 			if (utensil.GetUtensilType() == Utensil.UtensilType.FORK && eType == Enemy.EnemyType.FORKABLE)
 			{
 				Debug.Log("FORK ON FORK ACTION");
-				enemy.TakeDamage(utensil.GetUtensilDamage());
-				enemy.Knockback(myCollider.transform.position);
-				
+				enemy.TakeDamage(utensil.GetUtensilDamage(), this.transform);				
 			}
 			if (utensil.GetUtensilType() == Utensil.UtensilType.SPOON && eType == Enemy.EnemyType.SPOONABLE)
 			{
 				Debug.Log("SPOON ON SPOON ACTION");
-				enemy.TakeDamage(utensil.GetUtensilDamage());
-				enemy.Knockback(myCollider.transform.position);
+				enemy.TakeDamage(utensil.GetUtensilDamage(), this.transform);
 			}
 		}
 	}

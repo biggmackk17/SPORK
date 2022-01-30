@@ -89,7 +89,8 @@ public class Enemy : MonoBehaviour, IDamageable
             _health -= amount;
             StartCoroutine(DamageCooldown());
             Debug.Log(gameObject.name + " taking damage: " + amount + ":: remaining health: " + _health);
-
+            if(contactPoint != null)
+                Knockback(contactPoint.position);
             //Particles on contact point
             myMat.color = Color.red;
 
@@ -106,7 +107,7 @@ public class Enemy : MonoBehaviour, IDamageable
         Vector3 yOffset = new Vector3(0f, 0f, 0f);
         Vector3 vdiff = source - transform.position;
         Debug.Log(Math.Atan2(source.y - transform.position.y, source.x - transform.position.x));
-        _rb.AddForceAtPosition(vdiff*5, transform.position, ForceMode.Impulse);
+        _rb.AddForceAtPosition(vdiff*20, transform.position, ForceMode.Impulse);
     }
 
     private IEnumerator CollisionDelay()
