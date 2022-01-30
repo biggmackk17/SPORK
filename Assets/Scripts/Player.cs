@@ -20,7 +20,7 @@ public class Player : MonoBehaviour, IDamageable
     {
         _instance = this;
     }
-    //Dan
+//Austin
     public void TakeDamage(float amount)
     {
         if (!_invincible)
