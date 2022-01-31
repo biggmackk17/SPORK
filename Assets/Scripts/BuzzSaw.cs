@@ -31,9 +31,18 @@ public class BuzzSaw : MonoBehaviour
     {
         if (other.TryGetComponent<IDamageable>(out var target))
         {
-            target.TakeDamage(_damageAmount * Time.deltaTime);
-            if(!_sawDamageAudioCooldown)
+            if (other.gameObject.layer == 10 || other.gameObject.layer == 11)
+            {
+                target.TakeDamage(_damageAmount * Time.deltaTime / 3);
+            }
+            else
+            {
+                target.TakeDamage(_damageAmount * Time.deltaTime);
+            }
+            if (!_sawDamageAudioCooldown)
+            {
                 StartCoroutine(SawDamageAudio());
+            }
         }
     }
 

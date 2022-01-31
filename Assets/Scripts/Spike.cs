@@ -9,7 +9,14 @@ public class Spike : MonoBehaviour
     {
         if (other.TryGetComponent<IDamageable>(out var target))
         {
-            target.TakeDamage(_damage);
+            if (other.gameObject.layer == 10 || other.gameObject.layer == 11)
+            {
+                target.TakeDamage(_damage / 3);
+            }
+            else
+            {
+                target.TakeDamage(_damage);
+            }
         }
     }
 }
