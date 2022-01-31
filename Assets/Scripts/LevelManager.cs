@@ -47,6 +47,7 @@ public class LevelManager : MonoBehaviour
         {
             GameManager.isGameOver = true;
             Debug.Log("END OF GAME");
+            UIManager.Instance.GameComplete();
         }
         if (!GameManager.isGameOver)
         {
