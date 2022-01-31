@@ -82,10 +82,13 @@ public class LevelManager : MonoBehaviour
 
    public void DecrementEnemiesLeft()
     {
-        _enemiesLeft--;
-        if (_enemiesLeft <= 0)
+        if (!GameManager.Instance.isGameOver)
         {
-            WaveComplete();
+            _enemiesLeft--;
+            if (_enemiesLeft <= 0)
+            {
+                WaveComplete();
+            }
         }
     }
 
