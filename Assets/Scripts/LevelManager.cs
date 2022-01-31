@@ -28,7 +28,7 @@ public class LevelManager : MonoBehaviour
 
     private void Start()
     {
-        StartWave(_currentWave);
+        StartWave(3);
         Enemy.OnEnemyDie += DecrementEnemiesLeft;
     }
 
@@ -43,6 +43,11 @@ public class LevelManager : MonoBehaviour
 
     public void WaveComplete()
     {
+        if (_currentWave == 3)
+        {
+            GameManager.isGameOver = true;
+            Debug.Log("END OF GAME");
+        }
         if (!GameManager.isGameOver)
         {
             _currentWave++;
