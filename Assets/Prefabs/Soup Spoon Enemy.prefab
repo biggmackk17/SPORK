@@ -25,7 +25,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2181633153952274795, guid: dd99bd77e8d9eb046ada23a41032a2b6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.066
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2181633153952274795, guid: dd99bd77e8d9eb046ada23a41032a2b6, type: 3}
       propertyPath: m_LocalPosition.y
@@ -33,7 +33,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2181633153952274795, guid: dd99bd77e8d9eb046ada23a41032a2b6, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.975
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2181633153952274795, guid: dd99bd77e8d9eb046ada23a41032a2b6, type: 3}
       propertyPath: m_LocalRotation.w
@@ -80,7 +80,19 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3013782526812852299}
     - target: {fileID: 2181633153952274798, guid: dd99bd77e8d9eb046ada23a41032a2b6, type: 3}
+      propertyPath: _bloodType
+      value: 
+      objectReference: {fileID: 1508520779033139487, guid: 20eaac0026ace164f8963c02f0c35364, type: 3}
+    - target: {fileID: 2181633153952274798, guid: dd99bd77e8d9eb046ada23a41032a2b6, type: 3}
       propertyPath: _angularSpeed
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 2181633153952274799, guid: dd99bd77e8d9eb046ada23a41032a2b6, type: 3}
+      propertyPath: m_Speed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2181633153952274799, guid: dd99bd77e8d9eb046ada23a41032a2b6, type: 3}
+      propertyPath: m_AngularSpeed
       value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 5662194727942137023, guid: dd99bd77e8d9eb046ada23a41032a2b6, type: 3}

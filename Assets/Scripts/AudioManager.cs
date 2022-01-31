@@ -27,4 +27,14 @@ public class AudioManager : MonoBehaviour
             //Options for volume
             //Options for pitch
     }    
+
+    //Repeatable drone sound (make sure he's loopable)
+
+    //Good reactions on kills
+        //Good reaction on wave clear
+            //Good reaction on game win
+
+    //Bad reactions when player hurt
+        //Gasp when player low health
+        //Bad reaction when player dead
 }

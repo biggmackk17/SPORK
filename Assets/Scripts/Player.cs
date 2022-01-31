@@ -19,11 +19,14 @@ public class Player : MonoBehaviour, IDamageable
 	[SerializeField] private AudioClip _healSound;
 	[SerializeField] private AudioClip _invincibleSound;
 	[SerializeField] private SkinnedMeshRenderer _myMesh;
+	[SerializeField] private GameObject _bloodType;
 	private Material _myMat;
 
 	public Animator animator;
 
 	private Rigidbody _rb;
+
+
 
 	private void Awake()
 	{
@@ -43,6 +46,7 @@ public class Player : MonoBehaviour, IDamageable
 			_health -= amount;
 			animator.SetTrigger("hit");
 			_myMat.color = Color.red;
+			Splatter();
 			OnPlayerHealthChange?.Invoke(_health);
 			if (_health <= 0)
 			{
@@ -72,6 +76,7 @@ public class Player : MonoBehaviour, IDamageable
 			Destroy(pickup.gameObject);
 		}
 	}
+
 	private IEnumerator SetInvincible()
 	{
 		_invincible = true;
@@ -79,6 +84,13 @@ public class Player : MonoBehaviour, IDamageable
 		AudioManager.Instance.PlayAudioClip(_invincibleSound, 0.5f);
 		yield return new WaitForSeconds(5f);
 		_invincible = false;
+	}
+
+	private void Splatter()
+	{
+		var yOffset = new Vector3(0, 1f, 0);
+		var splatter = Instantiate<GameObject>(_bloodType, transform.position + yOffset, Quaternion.identity);
+		Destroy(splatter, 20f);
 	}
 
 	public void Heal(float amount)
