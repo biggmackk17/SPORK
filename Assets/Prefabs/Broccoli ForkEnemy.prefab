@@ -146,6 +146,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2126807978169810811}
     - target: {fileID: 7655380053678115518, guid: 874b4cdde92a9bf46953772391048878, type: 3}
+      propertyPath: _bloodType
+      value: 
+      objectReference: {fileID: 1294177304323604427, guid: 4cda8e4e2ce5d7c4487cb181d332d0f2, type: 3}
+    - target: {fileID: 7655380053678115518, guid: 874b4cdde92a9bf46953772391048878, type: 3}
       propertyPath: _turnSpeed
       value: 200
       objectReference: {fileID: 0}

@@ -43,8 +43,11 @@ public class LevelManager : MonoBehaviour
 
     public void WaveComplete()
     {
-        _currentWave++;
-        StartWave(_currentWave);
+        if (!GameManager.isGameOver)
+        {
+            _currentWave++;
+            StartWave(_currentWave);
+        }
     }
 
    public void DecrementEnemiesLeft()

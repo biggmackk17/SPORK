@@ -73,7 +73,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2181633153952274798, guid: dd99bd77e8d9eb046ada23a41032a2b6, type: 3}
       propertyPath: _speed
-      value: 3
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 2181633153952274798, guid: dd99bd77e8d9eb046ada23a41032a2b6, type: 3}
       propertyPath: myMesh
@@ -81,12 +81,16 @@ PrefabInstance:
       objectReference: {fileID: 5062704134612732847}
     - target: {fileID: 2181633153952274798, guid: dd99bd77e8d9eb046ada23a41032a2b6, type: 3}
       propertyPath: _damage
-      value: 5
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 2181633153952274798, guid: dd99bd77e8d9eb046ada23a41032a2b6, type: 3}
       propertyPath: _health
       value: 50
       objectReference: {fileID: 0}
+    - target: {fileID: 2181633153952274798, guid: dd99bd77e8d9eb046ada23a41032a2b6, type: 3}
+      propertyPath: _bloodType
+      value: 
+      objectReference: {fileID: 3677133208490848563, guid: f8c25796b402b064cb47d3bf5fcb0ac9, type: 3}
     - target: {fileID: 2181633153952274798, guid: dd99bd77e8d9eb046ada23a41032a2b6, type: 3}
       propertyPath: _angularSpeed
       value: 200
@@ -98,6 +102,18 @@ PrefabInstance:
     - target: {fileID: 2181633153952274799, guid: dd99bd77e8d9eb046ada23a41032a2b6, type: 3}
       propertyPath: m_AngularSpeed
       value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 5662194727942137023, guid: dd99bd77e8d9eb046ada23a41032a2b6, type: 3}
+      propertyPath: m_Drag
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5662194727942137023, guid: dd99bd77e8d9eb046ada23a41032a2b6, type: 3}
+      propertyPath: m_Mass
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5662194727942137023, guid: dd99bd77e8d9eb046ada23a41032a2b6, type: 3}
+      propertyPath: m_AngularDrag
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dd99bd77e8d9eb046ada23a41032a2b6, type: 3}

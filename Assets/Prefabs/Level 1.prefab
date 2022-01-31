@@ -157,7 +157,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e323943a0441b0499aa50d3f7749ac0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemyCount: 0
+  EnemyCount: 3
 --- !u!1001 &2255771521488746451
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -22,6 +22,8 @@ public class Enemy : MonoBehaviour, IDamageable
     [SerializeField] private SkinnedMeshRenderer myMesh;
     private Material myMat;
 
+    [SerializeField] private GameObject _bloodType;
+
     public static Action OnEnemyDie;
 
     public enum EnemyType
@@ -64,37 +66,36 @@ public class Enemy : MonoBehaviour, IDamageable
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.layer == 3)
+        if(collision.gameObject.layer == 3 || collision.gameObject.layer == 7)
         {
-            //_agent.enabled = false;
-            _agent.speed = 0;
-            _agent.angularSpeed = 0;
-            //Turn down angular speed too?
-            _rb.isKinematic = false;
+            
             StartCoroutine(CollisionDelay());
-        }
-        else if(collision.gameObject.layer == 7)
-        {
-            if(_enemyType == EnemyType.FORKABLE)
-            {
-                TakeDamage(_damage);
-            }
         }
     }
 
-    public void TakeDamage(float amount, Transform contactPoint = null) //pass in vector3 contactpoint
+    public void TakeDamage(float amount, Transform source = null, Vector3 contactPoint = default(Vector3)) //pass in vector3 contactpoint
     {
         if (!invincible)
         {
+            var yOffset = new Vector3(0, 1f, 0);
             _health -= amount;
-            StartCoroutine(DamageCooldown());
             Debug.Log(gameObject.name + " taking damage: " + amount + ":: remaining health: " + _health);
-            if(contactPoint != null)
-                Knockback(contactPoint.position);
+            StartCoroutine(DamageCooldown());
+            
+            //Splatter(transform.position);
+
+            if (source != null)
+            {
+                Debug.Log("player calling knockback");
+                Splatter(contactPoint);
+                Knockback(source.position);
+            }
+            else
+                Splatter(transform.position + yOffset);
             //Particles on contact point
             myMat.color = Color.red;
 
-            if (_health <= amount)
+            if (_health <= 0)
             {
                 _enemyState = EnemyState.DYING;
             }
@@ -105,19 +106,21 @@ public class Enemy : MonoBehaviour, IDamageable
     {
         //Vert offset to lower pos
         Vector3 yOffset = new Vector3(0f, 0f, 0f);
-        Vector3 vdiff = source - transform.position;
-        Debug.Log(Math.Atan2(source.y - transform.position.y, source.x - transform.position.x));
-        _rb.AddForceAtPosition(vdiff*20, transform.position, ForceMode.Impulse);
+        Vector3 vdiff = transform.position - source;
+        //Debug.Log(Math.Atan2(source.y - transform.position.y, source.x - transform.position.x));
+        Debug.Log(vdiff);
+        _rb.AddForceAtPosition(vdiff*10, source, ForceMode.Impulse);
     }
 
     private IEnumerator CollisionDelay()
     {
+        _agent.speed = 0;
+        _agent.angularSpeed = 0;
+        //_rb.isKinematic = false;
         yield return new WaitForSeconds(1f);
-        //_agent.enabled = true;
         _agent.speed = _speed;
         _agent.angularSpeed = _angularSpeed;
-        _rb.isKinematic = true;
-
+        //_rb.isKinematic = true;
     }
 
     private IEnumerator DamageCooldown()
@@ -125,6 +128,12 @@ public class Enemy : MonoBehaviour, IDamageable
         invincible = true;
         yield return new WaitForSeconds(1f);
         invincible = false;
+    }
+
+    private void Splatter(Vector3 pos)
+    {
+        var splatter = Instantiate<GameObject>(_bloodType, pos, Quaternion.identity);
+        Destroy(splatter, 20f);
     }
 
     // Update is called once per frame
@@ -174,13 +183,13 @@ public class Enemy : MonoBehaviour, IDamageable
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("TriggerEntered");
+        //Debug.Log("TriggerEntered");
         if (other.gameObject.layer == 3)
-            Debug.Log("Layer 3");
+            //Debug.Log("Layer 3");
         {
             if(other.TryGetComponent<IDamageable>(out var target))
             {
-                Debug.Log("player take damage!!!");
+                //Debug.Log("player take damage!!!");
                 target.TakeDamage(_damage);
             }
         }

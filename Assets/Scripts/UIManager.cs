@@ -35,7 +35,7 @@ public class UIManager : MonoBehaviour
 
     public IEnumerator DisplayWaveText(int wave)
     {
-        if (wave == 3)
+        if (wave == 2)
         {
             _waveText.text = "Final Wave";
         }

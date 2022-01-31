@@ -36,7 +36,7 @@ public class Player : MonoBehaviour, IDamageable
 		_health = _totalHealth;
 	}
 
-	public void TakeDamage(float amount, Transform contactPoint = null)
+	public void TakeDamage(float amount, Transform source = null, Vector3 contactPoint = default(Vector3))
 	{
 		if (!_invincible)
 		{
@@ -112,13 +112,13 @@ public class Player : MonoBehaviour, IDamageable
 			eType = enemy._enemyType;
 			if (utensil.GetUtensilType() == Utensil.UtensilType.FORK && eType == Enemy.EnemyType.FORKABLE)
 			{
-				Debug.Log("FORK ON FORK ACTION");
-				enemy.TakeDamage(utensil.GetUtensilDamage(), this.transform);				
+				//Debug.Log("FORK ON FORK ACTION");
+				enemy.TakeDamage(utensil.GetUtensilDamage(), this.transform, collision.contacts[0].point);				
 			}
 			if (utensil.GetUtensilType() == Utensil.UtensilType.SPOON && eType == Enemy.EnemyType.SPOONABLE)
 			{
-				Debug.Log("SPOON ON SPOON ACTION");
-				enemy.TakeDamage(utensil.GetUtensilDamage(), this.transform);
+				//Debug.Log("SPOON ON SPOON ACTION");
+				enemy.TakeDamage(utensil.GetUtensilDamage(), this.transform, collision.contacts[0].point);
 			}
 		}
 	}

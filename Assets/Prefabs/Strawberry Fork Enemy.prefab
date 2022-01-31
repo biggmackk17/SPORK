@@ -75,6 +75,11 @@ Animator:
   m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: 7774d3b3fd71bd44cb3cce66588fd195, type: 3}
   m_PrefabInstance: {fileID: 2141314347421222677}
   m_PrefabAsset: {fileID: 0}
+--- !u!137 &8994742157451042821 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 7017950017749313296, guid: 7774d3b3fd71bd44cb3cce66588fd195, type: 3}
+  m_PrefabInstance: {fileID: 2141314347421222677}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &3603993985667746317
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -101,6 +106,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4246824393994844015, guid: 874b4cdde92a9bf46953772391048878, type: 3}
+      propertyPath: m_Drag
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4246824393994844015, guid: 874b4cdde92a9bf46953772391048878, type: 3}
+      propertyPath: m_Mass
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4246824393994844015, guid: 874b4cdde92a9bf46953772391048878, type: 3}
+      propertyPath: m_AngularDrag
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 7655380053678115512, guid: 874b4cdde92a9bf46953772391048878, type: 3}
       propertyPath: m_Center.y
       value: 1
@@ -163,10 +180,30 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7655380053678115518, guid: 874b4cdde92a9bf46953772391048878, type: 3}
       propertyPath: _speed
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7655380053678115518, guid: 874b4cdde92a9bf46953772391048878, type: 3}
+      propertyPath: myMesh
+      value: 
+      objectReference: {fileID: 8994742157451042821}
+    - target: {fileID: 7655380053678115518, guid: 874b4cdde92a9bf46953772391048878, type: 3}
+      propertyPath: _damage
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7655380053678115518, guid: 874b4cdde92a9bf46953772391048878, type: 3}
+      propertyPath: _health
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 7655380053678115518, guid: 874b4cdde92a9bf46953772391048878, type: 3}
+      propertyPath: _bloodType
+      value: 
+      objectReference: {fileID: 4093951839049135721, guid: ca9f2f9963a75c24a93865cfa0abac19, type: 3}
+    - target: {fileID: 7655380053678115518, guid: 874b4cdde92a9bf46953772391048878, type: 3}
       propertyPath: _turnSpeed
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 7655380053678115518, guid: 874b4cdde92a9bf46953772391048878, type: 3}
+      propertyPath: _angularSpeed
       value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 7655380053678115519, guid: 874b4cdde92a9bf46953772391048878, type: 3}
