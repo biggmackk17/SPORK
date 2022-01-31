@@ -13,6 +13,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Text _waveText;
 
     private static UIManager _instance;
+    [SerializeField]private GameObject _WinMenu;
+
     public static UIManager Instance
     {
         get
@@ -82,9 +84,8 @@ public class UIManager : MonoBehaviour
         SceneManager.LoadScene(id);
     }
 
-/*    void OnDisable()
+    public void GameComplete()
     {
-        Player.Instance.OnPlayerHealthChange -= UpdateHealthBar;
-        GameManager.Instance.OnGameOver -= GameOverUI;
-    }*/
+        _WinMenu.SetActive(true);
+    }
 }
