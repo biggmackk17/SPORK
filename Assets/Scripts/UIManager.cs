@@ -111,7 +111,7 @@ public class UIManager : MonoBehaviour
 
     private void OnDisable()
     {
-        Debug.Log("Disabling UIManager");
+        //Debug.Log("Disabling UIManager");
         GameManager.Instance.OnGameOver -= GameOverUI;
     }
 }

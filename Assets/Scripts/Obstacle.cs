@@ -17,7 +17,7 @@ public class Obstacle : MonoBehaviour
     {
         if (collision.gameObject.layer == 3)
         {
-            Debug.Log("Spork has been hit");
+            //Debug.Log("Spork has been hit");
             //get access to player component
             //call player and use TakeDamage(_damage)
             //play sound effect

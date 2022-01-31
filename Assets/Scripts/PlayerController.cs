@@ -37,7 +37,7 @@ public class PlayerController : MonoBehaviour
         _jumping = Input.GetKeyDown(KeyCode.Space);
 
         if (_jumping == true)
-            Debug.Log("Hit the space key");
+            //Debug.Log("Hit the space key");
 
         _jumpHeld = Input.GetKey(KeyCode.Space);
 
@@ -51,14 +51,14 @@ public class PlayerController : MonoBehaviour
 
         _yvelocity = _rb.velocity.y;
 
-        if (_jumping)
-            Debug.Log("FixedUpdate:: Jumping");
+        //if (_jumping)
+            //Debug.Log("FixedUpdate:: Jumping");
 
         if (_jumping == true && _grounded)
         {
             _yvelocity += _jumpForce;
             _jumping = false;
-            Debug.Log("Should Jump");
+            //Debug.Log("Should Jump");
         }
 
 

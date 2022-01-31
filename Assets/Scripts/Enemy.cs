@@ -50,7 +50,7 @@ public class Enemy : MonoBehaviour, IDamageable
 
     void Start()
     {
-        Debug.Log(transform.name + " starting.");
+        //Debug.Log(transform.name + " starting.");
         _rb = transform.GetComponent<Rigidbody>();
         _agent = transform.GetComponent<NavMeshAgent>();
         _animator = GetComponent<Animator>();
@@ -87,7 +87,7 @@ public class Enemy : MonoBehaviour, IDamageable
 
             if (source != null)
             {
-                Debug.Log("player calling knockback");
+                //Debug.Log("player calling knockback");
                 Splatter(contactPoint);
                 Knockback(source.position);
             }
@@ -111,7 +111,7 @@ public class Enemy : MonoBehaviour, IDamageable
         Vector3 yOffset = new Vector3(0f, 0f, 0f);
         Vector3 vdiff = transform.position - source;
         //Debug.Log(Math.Atan2(source.y - transform.position.y, source.x - transform.position.x));
-        Debug.Log(vdiff);
+        //Debug.Log(vdiff);
         _rb.AddForceAtPosition(vdiff*10, source, ForceMode.Impulse);
     }
 

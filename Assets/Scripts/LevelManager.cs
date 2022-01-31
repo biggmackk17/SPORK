@@ -57,7 +57,7 @@ public class LevelManager : MonoBehaviour
         if (_currentWave == 3)
         {
             GameManager.Instance.isGameOver = true;
-            Debug.Log("END OF GAME");
+            //Debug.Log("END OF GAME");
             UIManager.Instance.GameComplete();
         }
         if (!GameManager.Instance.isGameOver)
