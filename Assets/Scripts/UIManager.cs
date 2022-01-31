@@ -97,8 +97,21 @@ public class UIManager : MonoBehaviour
         SceneManager.LoadScene(id);
     }
 
+    public void ReturnToMenu()
+    {
+        LevelManager._currentWave = 0;
+        gameOverUI.SetActive(false);
+        SceneManager.LoadScene(0);
+    }
+
     public void GameComplete()
     {
         _WinMenu.SetActive(true);
+    }
+
+    private void OnDisable()
+    {
+        Debug.Log("Disabling UIManager");
+        GameManager.Instance.OnGameOver -= GameOverUI;
     }
 }

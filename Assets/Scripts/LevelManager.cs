@@ -18,18 +18,24 @@ public class LevelManager : MonoBehaviour
     [SerializeField]
     private List<Wave> _waves;
 
-    static private int _currentWave = 0;
-    [SerializeField]private int _enemiesLeft;
+    static public int _currentWave = 0;
+    public int waveViewer;
+    [SerializeField] private int _enemiesLeft;
 
     private void Awake()
     {
         _instance = this;
+        //_currentWave = 0;
+    }
+
+    private void OnEnable()
+    {
+        Enemy.OnEnemyDie += DecrementEnemiesLeft;
     }
 
     private void Start()
     {
         StartWave(_currentWave);
-        Enemy.OnEnemyDie += DecrementEnemiesLeft;
     }
 
     private void StartWave(int id)
@@ -41,30 +47,37 @@ public class LevelManager : MonoBehaviour
         Player.Instance.transform.position = Vector3.zero;
     }
 
+    private void Update()
+    {
+        waveViewer = _currentWave;
+    }
+
     public void WaveComplete()
     {
         if (_currentWave == 3)
         {
-            GameManager.isGameOver = true;
+            GameManager.Instance.isGameOver = true;
             Debug.Log("END OF GAME");
             UIManager.Instance.GameComplete();
         }
-        if (!GameManager.isGameOver)
+        if (!GameManager.Instance.isGameOver)
         {
             _currentWave++;
-            StartCoroutine(WaveDelay());
-            //StartWave(_currentWave);
+            StartCoroutine(DelayedWaveStart());
         }
     }
 
-    private IEnumerator WaveDelay()
+    private IEnumerator DelayedWaveStart()
     {
         AudioManager.Instance.CombatMusic(false);
         AudioManager.Instance.PlayAudioClip(AudioManager.Instance._reactionClips[1]);
         //Downtime interaction?
         yield return new WaitForSeconds(6f);
-        AudioManager.Instance.CombatMusic(true);
-        StartWave(_currentWave);
+        if (!GameManager.Instance.isGameOver)
+        {
+            AudioManager.Instance.CombatMusic(true);
+            StartWave(_currentWave);
+        }
     }
 
    public void DecrementEnemiesLeft()
@@ -76,5 +89,8 @@ public class LevelManager : MonoBehaviour
         }
     }
 
-
+    private void OnDisable()
+    {
+        Enemy.OnEnemyDie -= DecrementEnemiesLeft;
+    }
 }

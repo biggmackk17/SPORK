@@ -12,6 +12,7 @@ public class Enemy : MonoBehaviour, IDamageable
 
     [SerializeField] private float _attackDistance;
     [SerializeField] private float _health;
+    [SerializeField] float currentHealth;
     [SerializeField] private float _damage;
     [SerializeField] private float _speed;
     [SerializeField] private float _angularSpeed;
@@ -49,6 +50,7 @@ public class Enemy : MonoBehaviour, IDamageable
 
     void Start()
     {
+        Debug.Log(transform.name + " starting.");
         _rb = transform.GetComponent<Rigidbody>();
         _agent = transform.GetComponent<NavMeshAgent>();
         _animator = GetComponent<Animator>();
@@ -57,6 +59,7 @@ public class Enemy : MonoBehaviour, IDamageable
         _agent.speed = _speed;
         _agent.angularSpeed = _angularSpeed;
         myMat = myMesh.material;
+        currentHealth = _health;
     }
 
     void Update()
@@ -78,11 +81,9 @@ public class Enemy : MonoBehaviour, IDamageable
         if (!invincible)
         {
             var yOffset = new Vector3(0, 1f, 0);
-            _health -= amount;
-            Debug.Log(gameObject.name + " taking damage: " + amount + ":: remaining health: " + _health);
+            currentHealth -= amount;
+            //Debug.Log(gameObject.name + " taking damage: " + amount + ":: remaining health: " + _health);
             StartCoroutine(DamageCooldown());
-            
-            //Splatter(transform.position);
 
             if (source != null)
             {
@@ -91,11 +92,13 @@ public class Enemy : MonoBehaviour, IDamageable
                 Knockback(source.position);
             }
             else
+            {
                 Splatter(transform.position + yOffset);
-            //Particles on contact point
+            }
+
             myMat.color = Color.red;
 
-            if (_health <= 0)
+            if (currentHealth <= 0)
             {
                 _enemyState = EnemyState.DYING;
             }
@@ -170,7 +173,7 @@ public class Enemy : MonoBehaviour, IDamageable
                     yield return null;
             }
             yield return null;
-            }
+        }
         Die();
     }
 

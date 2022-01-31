@@ -9,14 +9,15 @@ public class GameManager : MonoBehaviour
     private static GameManager _instance;
     public static GameManager Instance => _instance;
 
-    public static bool isGameOver = false;
+    public bool isGameOver = false;
 
     public Action OnGameOver;
 
     void Awake()
     {
         _instance = this;
-        Debug.Log(_instance);
+        isGameOver = false;
+        //Debug.Log(_instance);
     }
 
     public void GameOver()
