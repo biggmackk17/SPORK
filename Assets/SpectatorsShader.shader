@@ -14,7 +14,7 @@ Shader "Custom/SpectatorsShader"
 
 			CGPROGRAM
 			// Physically based Standard lighting model, and enable shadows on all light types
-			#pragma surface surf Standard fullforwardshadows
+			#pragma surface surf Standard vertex:vert fullforwardshadows
 
 			// Use shader model 3.0 target, to get nicer looking lighting
 			#pragma target 3.0
@@ -37,7 +37,9 @@ Shader "Custom/SpectatorsShader"
 			UNITY_INSTANCING_BUFFER_START(Props)
 				// put more per-instance properties here
 			UNITY_INSTANCING_BUFFER_END(Props)
-
+			void vert(inout appdata_full v) {
+				v.vertex.xyz += float3(0,0.3f * abs(sin(v.vertex.x * 0.1f + _Time.y * 2.0f)) , 0);
+			}
 			void surf(Input IN, inout SurfaceOutputStandard o)
 			{
 				// Albedo comes from a texture tinted by color
