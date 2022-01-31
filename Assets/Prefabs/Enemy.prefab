@@ -48,7 +48,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1336820055}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -233,7 +233,11 @@ MonoBehaviour:
   _attackDistance: 2
   _health: 100
   _damage: 10
+  _speed: 0
+  _angularSpeed: 0
   invincible: 0
+  myMesh: {fileID: 0}
+  _bloodType: {fileID: 0}
   _enemyType: 0
   _enemyState: 0
 --- !u!54 &5662194727942137023
