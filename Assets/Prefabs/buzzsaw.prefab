@@ -48,7 +48,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1287982017, guid: 5b903e1bd571cdb40b792b8d309d311b, type: 3}
       propertyPath: MaxDistance
-      value: 9
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1287982017, guid: 5b903e1bd571cdb40b792b8d309d311b, type: 3}
       propertyPath: MinDistance
@@ -57,6 +57,10 @@ PrefabInstance:
     - target: {fileID: 1287982017, guid: 5b903e1bd571cdb40b792b8d309d311b, type: 3}
       propertyPath: rolloffMode
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1287982017, guid: 5b903e1bd571cdb40b792b8d309d311b, type: 3}
+      propertyPath: DopplerLevel
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1287982017, guid: 5b903e1bd571cdb40b792b8d309d311b, type: 3}
       propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value

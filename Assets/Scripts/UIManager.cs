@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System;
+using TMPro;
 
 public class UIManager : MonoBehaviour
 {
@@ -11,6 +12,17 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Image _healthbarFill;
     [SerializeField] private GameObject gameOverUI;
     [SerializeField] private Text _waveText;
+    [SerializeField] private TextMeshProUGUI _gameOverText;
+    private string[] _gameOverStories =
+    {
+        "The utensil purists of the world will now run rampant.",
+        "Utensils, what we do in life… echoes in eternity.",
+        "You were tossed into a riverbank and left to rust.",
+        "“The Spork and his people have long been prejudiced, and the road to equality is an uphill slog, fraught with innumerable opposition, but I stand with you, brothers and sisters.” – Gandhi",
+        "Sporktacus, the last hope, has fallen leaving Emperor Cauliflower to oppress all who oppose his rule.",
+        "You splintered like cheap plastic takeout",
+        "Too dull to puncture, to flat to scoop. A pathetic excuse for a Spork."
+    };
 
     private static UIManager _instance;
     public static UIManager Instance
@@ -74,6 +86,7 @@ public class UIManager : MonoBehaviour
     private void GameOverUI()
     {
         gameOverUI.SetActive(true);
+        _gameOverText.text = _gameOverStories[UnityEngine.Random.Range(0, _gameOverStories.Length)];
     }
 
     public void LoadScene(int id) //Better way to do this so that Menu can access this function too?

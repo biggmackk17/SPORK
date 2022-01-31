@@ -177,6 +177,7 @@ public class Enemy : MonoBehaviour, IDamageable
     private void Die()
     {
         //set anim to dead
+        AudioManager.Instance.PlayAudioClip(AudioManager.Instance._reactionClips[4]);
         OnEnemyDie?.Invoke();
         Destroy(this.gameObject);
     }

@@ -15,13 +15,15 @@ public class Player : MonoBehaviour, IDamageable
 	public float _health = 100;
 	private float _totalHealth = 100;
 	private bool _invincible;
+	private bool _isPlayingSound;
 
 	[SerializeField] private AudioClip _healSound;
 	[SerializeField] private AudioClip _invincibleSound;
 	[SerializeField] private SkinnedMeshRenderer _myMesh;
 	[SerializeField] private GameObject _bloodType;
-	private Material _myMat;
+	[SerializeField] private AudioClip[] _playerGrunts;
 
+	private Material _myMat;
 	public Animator animator;
 
 	private Rigidbody _rb;
@@ -48,6 +50,12 @@ public class Player : MonoBehaviour, IDamageable
 			_myMat.color = Color.red;
 			Splatter();
 			OnPlayerHealthChange?.Invoke(_health);
+			if (!_isPlayingSound)
+			{
+				AudioManager.Instance.PlayAudioClip(_playerGrunts[UnityEngine.Random.Range(0,8)], 1.2f);
+				StartCoroutine(DelayedAudienceSound());
+				StartCoroutine(DamageSoundCooldown());
+			}
 			if (_health <= 0)
 			{
 				_health = 0;
@@ -75,6 +83,19 @@ public class Player : MonoBehaviour, IDamageable
 			}
 			Destroy(pickup.gameObject);
 		}
+	}
+
+	private IEnumerator DamageSoundCooldown()
+	{
+		_isPlayingSound = true;
+		yield return new WaitForSeconds(2f);
+		_isPlayingSound = false;
+	}
+
+	private IEnumerator DelayedAudienceSound()
+	{
+		yield return new WaitForSeconds(0.25f);
+		AudioManager.Instance.PlayAudioClip(AudioManager.Instance._reactionClips[3], 1f);
 	}
 
 	private IEnumerator SetInvincible()

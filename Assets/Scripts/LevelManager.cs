@@ -28,7 +28,7 @@ public class LevelManager : MonoBehaviour
 
     private void Start()
     {
-        StartWave(3);
+        StartWave(_currentWave);
         Enemy.OnEnemyDie += DecrementEnemiesLeft;
     }
 
@@ -51,8 +51,19 @@ public class LevelManager : MonoBehaviour
         if (!GameManager.isGameOver)
         {
             _currentWave++;
-            StartWave(_currentWave);
+            StartCoroutine(WaveDelay());
+            //StartWave(_currentWave);
         }
+    }
+
+    private IEnumerator WaveDelay()
+    {
+        AudioManager.Instance.CombatMusic(false);
+        AudioManager.Instance.PlayAudioClip(AudioManager.Instance._reactionClips[1]);
+        //Downtime interaction?
+        yield return new WaitForSeconds(6f);
+        AudioManager.Instance.CombatMusic(true);
+        StartWave(_currentWave);
     }
 
    public void DecrementEnemiesLeft()

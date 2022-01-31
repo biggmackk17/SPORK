@@ -7,6 +7,11 @@ public class AudioManager : MonoBehaviour
     private static AudioManager _instance;
     public static AudioManager Instance => _instance;
 
+    [SerializeField] private GameObject _audioMusic;
+    [SerializeField] private GameObject _audioAudience;
+
+    public AudioClip[] _reactionClips; //0-4: Applaud, Yeah, Gasp, Owch, Kill
+
     AudioSource _audioSource;
 
     private void Awake()
@@ -28,7 +33,14 @@ public class AudioManager : MonoBehaviour
             //Options for pitch
     }    
 
+    public void CombatMusic(bool isActive)
+    {
+        _audioMusic.SetActive(isActive);
+    }
+
+    //Repeating music
     //Repeatable drone sound (make sure he's loopable)
+        //
 
     //Good reactions on kills
         //Good reaction on wave clear
