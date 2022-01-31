@@ -2067,7 +2067,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1531929014
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2371,11 +2371,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1597816385, guid: d064ffe73d7a5b642816a153828f3f85, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.000000017000493
+      value: -0.0000000170005
       objectReference: {fileID: 0}
     - target: {fileID: 1597816385, guid: d064ffe73d7a5b642816a153828f3f85, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.0000000026537974
+      value: 0.0000000026537985
       objectReference: {fileID: 0}
     - target: {fileID: 7029479807611263556, guid: d064ffe73d7a5b642816a153828f3f85, type: 3}
       propertyPath: _bloodType
